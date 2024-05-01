@@ -133,10 +133,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7273637}
   - component: {fileID: 7273636}
-  - component: {fileID: 7273635}
   - component: {fileID: 7273634}
   - component: {fileID: 7273633}
-  m_Layer: 0
+  - component: {fileID: 7273638}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,26 +215,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6571429, y: 0.6857143}
   m_EdgeRadius: 0
---- !u!114 &7273635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7273632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8ec1a085f274a74a83ca0fa546328ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vel: 10
-  vel_Max: 20
-  dash_CD: 0
-  t_cooldown: 2
-  double_jump: 0
-  dash: 0
-  habilidades: 0
-  Habilidades: {fileID: 2113636709}
 --- !u!212 &7273636
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -302,6 +282,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7273638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7273632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8ec1a085f274a74a83ca0fa546328ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vel: 10
+  velMax: 20
+  f_salto: 15
+  f_dash: 10
+  dash_CD: 0
+  cool_down_dash: 2
+  suelo:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1001 &416991721
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -310,6 +311,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1647824713}
     m_Modifications:
+    - target: {fileID: 280403176420262528, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 457192915307337646, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 572740720281351666, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 989379550549921080, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1034088805267136249, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1410054757443683544, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1973303371582710045, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.96
@@ -350,9 +375,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 3111708051014921166, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3359017464188107453, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565952826727050171, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801892867774924602, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078821897910144802, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254616688383506836, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4746997594481642755, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
       propertyPath: m_Name
       value: Suelo (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4746997594481642755, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348502360256653495, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -762,6 +819,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1647824713}
     m_Modifications:
+    - target: {fileID: 280403176420262528, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 457192915307337646, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 572740720281351666, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 989379550549921080, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1034088805267136249, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1410054757443683544, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1973303371582710045, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.73
@@ -802,9 +883,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 3111708051014921166, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3359017464188107453, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565952826727050171, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801892867774924602, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078821897910144802, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254616688383506836, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4746997594481642755, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
       propertyPath: m_Name
       value: Suelo (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4746997594481642755, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348502360256653495, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1077,6 +1190,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1647824713}
     m_Modifications:
+    - target: {fileID: 280403176420262528, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 457192915307337646, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 572740720281351666, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 989379550549921080, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1034088805267136249, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1410054757443683544, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1973303371582710045, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1117,9 +1254,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3111708051014921166, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3359017464188107453, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565952826727050171, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801892867774924602, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078821897910144802, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254616688383506836, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4746997594481642755, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
       propertyPath: m_Name
       value: Suelo
+      objectReference: {fileID: 0}
+    - target: {fileID: 4746997594481642755, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348502360256653495, guid: ff6eefe818c8e344fa2852d5dbceaaac, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

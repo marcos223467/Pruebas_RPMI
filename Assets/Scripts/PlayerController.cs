@@ -5,80 +5,86 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float vel, vel_Max;
+    [SerializeField] private float vel, velMax, f_salto, f_dash, dash_CD, cool_down_dash;
+    private bool canJump, salto, dash;
+    [SerializeField] private LayerMask suelo;
     private Rigidbody2D _rb;
-    [SerializeField] private float dash_CD, t_cooldown;
+    private SpriteRenderer _spriteRenderer;
 
-    public bool double_jump, dash, habilidades;
-
-    public GameObject Habilidades;
+    private Vector2 inputDirection;
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        double_jump = false;
-        dash = false;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        canJump = true;
+        salto = false;
+        inputDirection = new Vector2(0, 0);
         dash_CD = 0f;
-        habilidades = false;
+        dash = false;
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
-        if (dash_CD > 0)
+        inputDirection.x = Input.GetAxis("Horizontal");
+        if (inputDirection.x < -0.1f)
+            _spriteRenderer.flipX = true;
+        if(inputDirection.x > 0.1f)
+            _spriteRenderer.flipX = false;
+        
+        if (Input.GetAxis("Jump") > 0f && canJump)
+            salto = true;
+
+        if (dash_CD > 0f)
         {
             dash_CD -= Time.deltaTime;
         }
 
-        if (Input.GetButtonUp("Jump"))
-        {
-            habilidades = !habilidades;
-            Habilidades.SetActive(habilidades);
-        }
+        if (Input.GetAxis("Fire1") > 0f && dash_CD <= 0f)
+            dash = true;
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Mover();
+        Jump();
         Dash();
     }
 
     private void Mover()
     {
-        Vector2 dir = new Vector2(Input.GetAxis("Horizontal"), 0);
-        _rb.drag = 1f;
-        if (dir.x < -0.1)
+
+        if (_rb.velocity.magnitude <= velMax)
+            _rb.AddForce(inputDirection * vel, ForceMode2D.Force);
+        
+    }
+
+    private void Jump()
+    {
+        if (salto)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
+            _rb.AddForce(new Vector2(0,1) * f_salto, ForceMode2D.Impulse);
+            canJump = false;
+            salto = false;
         }
-        else if(dir.x > 0.1)
-        {
-            GetComponent<SpriteRenderer>().flipX = false;
-        }
-        if (_rb.velocity.magnitude <= vel_Max)
-            _rb.AddForce(dir * vel, ForceMode2D.Force);
     }
 
     private void Dash()
     {
-        if (dash && dash_CD <= 0f)
+        if (dash)
         {
-            Vector2 dir = new Vector2(Input.GetAxis("Horizontal"), 0);
-            if (dir.x == 0)
-            {
-                if (GetComponent<SpriteRenderer>().flipX)
-                    dir.x = -1;
-                else
-                    dir.x = 1;
-            }
-            if (Input.GetAxis("Fire1") > 0)
-            {
-                _rb.drag = 5f;
-                _rb.AddForce(dir * 20, ForceMode2D.Impulse);
-                dash_CD = t_cooldown;
-            }
+            _rb.AddForce(inputDirection * f_dash, ForceMode2D.Impulse);
+            dash_CD = cool_down_dash;
+            dash = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.layer == Mathf.Log(suelo.value, 2)) // Chocamos con el suelo
+        {
+            canJump = true;
         }
     }
 }
-
-
