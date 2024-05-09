@@ -70,11 +70,10 @@ public class PlayerController : MonoBehaviour
     {
         if (salto)
         {
-            _anim.SetTrigger("Jump");
             _rb.AddForce(new Vector2(0,1) * f_salto, ForceMode2D.Impulse);
             canJump = false;
             salto = false;
-            _anim.SetBool("Caer", true);
+            _anim.SetBool("Salto", true);
         }
     }
 
@@ -93,14 +92,14 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.layer == Mathf.Log(suelo.value, 2f)) // Chocamos con el suelo
         {
             canJump = true;
-            _anim.SetBool("Caer", false);
+            _anim.SetBool("Salto", false);
             _anim.SetBool("Wall", false);
         }
         
         if (other.gameObject.layer == Mathf.Log(pared.value, 2)) // Chocamos con el suelo
         {
             canJump = true;
-            _anim.SetBool("Caer", false);
+            _anim.SetBool("Salto", false);
             _anim.SetBool("Wall", true);
         }
     }
