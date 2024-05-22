@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Animator _anim;
 
+    private Vector2 saltoPared;
+
     private Vector2 inputDirection;
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
         inputDirection = new Vector2(0, 0);
         dash_CD = 0f;
         dash = false;
+        saltoPared = new Vector2(0, 0);
     }
 
     // Update is called once per frame
@@ -70,7 +73,7 @@ public class PlayerController : MonoBehaviour
     {
         if (salto)
         {
-            _rb.AddForce(new Vector2(0,1) * f_salto, ForceMode2D.Impulse);
+            _rb.AddForce((new Vector2(0,1) * f_salto) + saltoPared, ForceMode2D.Impulse);
             canJump = false;
             salto = false;
             _anim.SetBool("Salto", true);
@@ -94,13 +97,25 @@ public class PlayerController : MonoBehaviour
             canJump = true;
             _anim.SetBool("Salto", false);
             _anim.SetBool("Wall", false);
+            saltoPared.x = 0f;
         }
         
-        if (other.gameObject.layer == Mathf.Log(pared.value, 2)) // Chocamos con el suelo
+        if (other.gameObject.layer == Mathf.Log(pared.value, 2)) // Chocamos con la pared
         {
             canJump = true;
             _anim.SetBool("Salto", false);
             _anim.SetBool("Wall", true);
+            if (_spriteRenderer.flipX)
+            {
+                Debug.Log("Me choco izquierda");
+                saltoPared.x = 10f;
+            }
+            else
+            {
+                Debug.Log("Me choco derecha");
+                saltoPared.x = -10f;
+            }
+            
         }
     }
 }
